@@ -15,12 +15,27 @@ import "./App.css";
 Chart.register(CategoryScale);
 
 export default function App() {
+
+  // Getting distinct types of Alcohol
+  const distinctWine = wineData
+    ?.map((item) => item.Alcohol)
+    .filter((value, index, self) => self.indexOf(value) === index);
+    
+  // Creating distinct array with average of Malic acid in it
+  const distinctWineArray = distinctWine.map((item) => {
+    const wineDat = wineData?.filter((e) => e.Alcohol === item);
+    const wineDatAvgMalic =
+      wineDat?.reduce((sum, item) => sum + item?.MalicAcid, 0) /
+      wineDat?.length;
+    return { Alcohol: item, AvgMalicAcid: wineDatAvgMalic };
+  });
+
   const [barChartData, setBarChartData] = useState({
-    labels: wineData.map((data, index) => `Alcohol ${index + 1}`),
+    labels: distinctWineArray.map((data) => `Alcohol ${data?.Alcohol}`),
     datasets: [
       {
         label: "Malic Acid Content ",
-        data: wineData.map((data) => data.MalicAcid),
+        data: distinctWineArray.map((data) => data.AvgMalicAcid),
         backgroundColor: ["#2a71d0"],
         borderColor: "black",
         borderWidth: 2,

@@ -38,6 +38,6 @@ Must be one of the following:
 * **test**: Adding missing tests or correcting existing tests
 
 For responsive images check public folder or click on below links
-![Desktop view](public/Desktop%20view.png)
-![Tab Responsive](public/tab%20mode.png)
-![Mobile Responsive](public/mobile%20responsive.png)
+![Desktop View](public/DesktopView.png)
+![Mobile View](public/MobileView.png)
+![Tab View](public/TabMode.png)
